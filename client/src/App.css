@@ -1,0 +1,36 @@
+input {
+  border: 1px solid #FFFFFF;
+  color: white;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: .5rem;
+  border-radius: .5rem;
+  background-color: transparent;
+  margin: 1rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
