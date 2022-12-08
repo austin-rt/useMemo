@@ -31,7 +31,6 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-<<<<<<< HEAD
   align-items: center;
   margin-bottom: .1rem;
   
@@ -39,18 +38,4 @@ input {
 
 .result{
   margin-bottom: 3rem;
-=======
-}
-
-main {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
->>>>>>> f09eb87c9468c7366319e4082ca6547f5285e791
 }
