@@ -6,6 +6,9 @@ In this article, we will explore when and how to use React’s `useMemo` Hook to
 
 ## Getting Started
 
+Buckle up and strap in. This article is on the heavier side for both theory and length.
+</br>
+</br> 
 If you'd like to follow along in your local IDE, you can find the GitHub Repo [here](https://github.com/austin-rt/useMemo). Otherwise, you can reference the code snippets, though you will miss out on the performance comparison demonstrations.
 
 - `fork and clone`
@@ -79,21 +82,19 @@ If we provide a small value to the `number` input, we'll see that our React app 
 
 ## Why is This Happening?
 
-If we're up to speed on what React is doing behind the scenes, we know that any change in props or state triggers a re-render. So, every time our input changes, the app re-renders, which causes our expensive function to recalculate its output.
+Thirty-five seems to be the sweet spot of slow enough to be annoying but still testable by our solution. So we'll input 35 and wait for the output to calculate.
 
-Thirty-five seems to be the sweet spot of slow enough to be annoying and never make it to production but fast enough that we can still test our solution. So we'll input 35 and wait for the output to calculate.
-
-To further demonstrate, use 35 as the first input and start typing into the second input. See how slow it is to render? That's because when the input changed, the **entire** component re-rendered, and our expensive function recalculated the output before rendering. Recalculations will happen even when `jacobsthal`'s output doesn't change. This is obviously a problem.
+Now start typing into the second input. See how slow it is to render? That's because when the input changed, the **entire** component re-rendered, and our expensive function recalculated the output before rendering. Recalculations will happen even when `jacobsthal`'s output doesn't change. This is obviously a problem.
 
 <blockquote>A Quick Aside:
 
-I've made this mistake and seen countless other Junior Developers do the same. You don't always need <code>useState</code> for your forms. I'll even propose that you **usually don't**. If all you're doing is submitting that form to an API endpoint, and no part of your application needs to see the updated value in real time, you should be using <code>useRef</code> instead. We will get into how and why in a later article.</blockquote>
+I've made this mistake and seen countless other Junior Developers do the same. You don't always need <code>useState</code> for your forms. I'll even propose that you **usually don't**. If no part of your application needs to see the updated value in real time, _like the form submitting to an API_ you should be using <code>useRef</code> instead. We will get into how and why in a later article.</blockquote>
 
 So with the stage set and the curtains drawn, how do we resolve the issue at hand?
 
-## Enter `useMemo`
+## Memoization
 
-We'll begin with some context. Memoization is a Programming technique that stores the **results** of a function call, so the next time you call that function, it doesn't have to recalculate the output. Instead, it can return the stored result, saving a lot of [time complexity](https://www.freecodecamp.org/news/time-complexity-of-algorithms/) with recursive functions. That's all you need to know for now, but if you'd like a more in-depth explanation, you can also check out this [Memoization in JavaScript](https://www.geeksforgeeks.org/javascript-memoization/) article by GeeksforGeeks. And at the end of this article, we will refactor our `jacobsthal` function to use proper JavaScript memoization.
+Memoization is a Programming technique that stores the **results** of a function call, so the next time you call that function, it doesn't have to recalculate the output. Instead, it can return the stored result, saving a lot of [time complexity](https://www.freecodecamp.org/news/time-complexity-of-algorithms/) with recursive functions. That's all you need to know for now, but if you'd like a more in-depth explanation, you can also check out this [Memoization in JavaScript](https://www.geeksforgeeks.org/javascript-memoization/) article by GeeksforGeeks. And at the end of this article, we will refactor our `jacobsthal` function to implement proper JavaScript memoization.
 
 ## `useMemo` vs. `useCallback`
 
