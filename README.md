@@ -15,7 +15,7 @@ If you'd like to follow along in your local IDE, you can find the GitHub Repo [h
 
 ## Starter Code
 
-We'll begin with a quick overview of our starter code. In `App.js`, you'll find a `jacobsthal`, two pieces of state, and a `calculation`. Notice that we wrapped `jacobsthal` in a `useCallback` Hook and that `calculation` is the returned value from calling `jacobsthal`. The JSX renders both inputs and their respective values. If you need a refresher on what service the `useCallback` Hook provides, I'd suggest you pause here and give my <a href="https://medium.com/@austinrt/demystifying-react-Hooks-usecallback-7c78fac08947">useCallback</a> article a quick read.
+We'll begin with a quick overview of our starter code. In `App.js`, you'll find a function name "`jacobsthal`," two pieces of state, and a `calculation`. Notice that we wrapped `jacobsthal` in a `useCallback` Hook, and that `calculation` is the returned value from calling `jacobsthal`. The JSX renders both inputs and their respective values. If you need a refresher on what service the `useCallback` Hook provides, I'd suggest you pause here and give my <a href="https://medium.com/@austinrt/demystifying-react-Hooks-usecallback-7c78fac08947">useCallback</a> article a quick read.
 
 ```js
 import './App.css';
@@ -85,19 +85,15 @@ Thirty-five seems to be the sweet spot of slow enough to be annoying and never m
 
 To further demonstrate, use 35 as the first input and start typing into the second input. See how slow it is to render? That's because when the input changed, the **entire** component re-rendered, and our expensive function recalculated the output before rendering. Recalculations will happen even when `jacobsthal`'s output doesn't change. This is obviously a problem.
 
----
+<blockquote>A Quick Aside:
 
-### A Quick Aside:
-
-I've made this mistake and seen countless other Junior Developers do the same. You don't always need <code>useState</code> for your forms. I'll even propose that you **usually don't**. If all you're doing is submitting that form to an API endpoint, and no part of your application needs to see the updated value in real time, you should be using <code>useRef</code> instead. We will get into how and why in a later article.
-
----
+I've made this mistake and seen countless other Junior Developers do the same. You don't always need <code>useState</code> for your forms. I'll even propose that you **usually don't**. If all you're doing is submitting that form to an API endpoint, and no part of your application needs to see the updated value in real time, you should be using <code>useRef</code> instead. We will get into how and why in a later article.</blockquote>
 
 So with the stage set and the curtains drawn, how do we resolve the issue at hand?
 
 ## Enter `useMemo`
 
-We'll begin with some context. Memoization is a Programming technique that stores the **results** of a function call, so the next time you call that function, it doesn't have to recalculate the output. Instead, it can return the stored result, which can save a lot of [time complexity](https://www.freecodecamp.org/news/time-complexity-of-algorithms/) with recursive functions. That's all you need to know for now, but if you'd like a more in-depth explanation, you can also check out this [Memoization in JavaScript](https://www.geeksforgeeks.org/javascript-memoization/) article by GeeksforGeeks. And at the end of this article, we will refactor our `jacobsthal` function to use proper JavaScript memoization.
+We'll begin with some context. Memoization is a Programming technique that stores the **results** of a function call, so the next time you call that function, it doesn't have to recalculate the output. Instead, it can return the stored result, saving a lot of [time complexity](https://www.freecodecamp.org/news/time-complexity-of-algorithms/) with recursive functions. That's all you need to know for now, but if you'd like a more in-depth explanation, you can also check out this [Memoization in JavaScript](https://www.geeksforgeeks.org/javascript-memoization/) article by GeeksforGeeks. And at the end of this article, we will refactor our `jacobsthal` function to use proper JavaScript memoization.
 
 ## `useMemo` vs. `useCallback`
 
@@ -132,7 +128,7 @@ As in our `useCallback` example, we want to cache what's **returned** from this 
 _Remember your `return` keyword within the anonymous function so it is accessible by `useMemo`!_
 
 ```js
-const output = useMemo(() => {
+const calculation = useMemo(() => {
   return jacobsthal(number);
 }, []);
 ```
@@ -154,7 +150,7 @@ The intent of dependency arrays with React Hooks is to trigger our Hook more int
 So let's add `number` to our dependency array.
 
 ```js
-const result = useMemo(() => {
+const calculation = useMemo(() => {
   return jacobsthal(number);
 }, [number]);
 ```
