@@ -78,7 +78,7 @@ Our <code>jacobsthal</code> function is a simple, <a href="https://www.geeksforg
 </blockquote>
 </br>
 
-If we provide a small value to the `number` input, we'll see that our React app behaves as expected. It snappily renders the result. However, as we increase the value of our input, we notice that the app still provides the desired output, but it takes increasingly longer to render.
+If we provide a small value to the `number` input, we'll see that our React app behaves as expected. It snappily renders the result. However, as we increase the value of our input, we notice that while the app still provides the desired output, it takes increasingly longer to render.
 
 ## Why is This Happening?
 
