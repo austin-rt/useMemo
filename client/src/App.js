@@ -1,39 +1,58 @@
 import './App.css';
-import { useState } from 'react';
-import { jacobsthal } from './constants/helpers';
+import { useState, useCallback, useMemo } from 'react';
 
 function App() {
-  const [number, setNumber] = useState(0);
-  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [input, setInput] = useState('');
 
-  const result = jacobsthal(number);
+  const jacobsthal = useCallback((n, previousValues = []) => {
+    if (previousValues[n]) {
+      return previousValues[n];
+    }
+    let result;
+    if (n < 2) {
+      result = n;
+    } else {
+      result = jacobsthal(n - 1, previousValues) + 2 * jacobsthal(n - 2, previousValues);
+    }
+    previousValues[n] = result;
+    return result;
+  }, []);
+
+  const calculation = useMemo(() => {
+    return jacobsthal(number);
+  }, [number, jacobsthal]);
 
   return (
     <div>
-      <header className='App-header'>
+      <main>
         <section>
-          <input
-            type='text'
-            value={number}
-            placeholder='0'
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-          />
-          <div>{result || 0}</div>
+          <div className='user-input'>
+            <input
+              type='text'
+              value={number}
+              placeholder='desired index'
+              onChange={(e) => {
+                setNumber(e.target.value);
+              }}
+            />
+          </div>
+          <div className='result'>{calculation || 0}</div>
         </section>
         <section>
-          <input
-            type='text'
-            value={name}
-            placeholder='name'
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-          <div>{name || 'name'}</div>
+          <div className='user-input'>
+            <input
+              type='text'
+              value={input}
+              placeholder='user input'
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            />
+          </div>
+          <div className='result'>{input || '--'}</div>
         </section>
-      </header>
+      </main>
     </div>
   );
 }
