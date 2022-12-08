@@ -1,27 +1,16 @@
 import './App.css';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 
 function App() {
   const [number, setNumber] = useState('');
   const [input, setInput] = useState('');
 
-  const jacobsthal = useCallback((n, previousValues = []) => {
-    if (previousValues[n]) {
-      return previousValues[n];
-    }
-    let result;
-    if (n < 2) {
-      result = n;
-    } else {
-      result = jacobsthal(n - 1, previousValues) + 2 * jacobsthal(n - 2, previousValues);
-    }
-    previousValues[n] = result;
-    return result;
+  const jacobsthal = useCallback((n) => {
+    if (n < 2) return n;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
   }, []);
 
-  const calculation = useMemo(() => {
-    return jacobsthal(number);
-  }, [number, jacobsthal]);
+  const calculation = jacobsthal(number);
 
   return (
     <div>
