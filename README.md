@@ -71,7 +71,7 @@ export default App;
 
 </br>
 <blockquote>
-Our <code>jacobsthal</code> function is a simple, <a href="https://www.geeksforgeeks.org/javascript-memoization/">recursive</a> function that returns the <a href="https://en.wikipedia.org/wiki/Jacobsthal_number">Jacobsthal Number</a> at a given index. The specifics of the code and Jacobsthal Number don't matter for this article. All we care about is that it's a computationally expensive function, defined **within** our component, hence the implementation of <code>useCallback</code>.
+Our <code>jacobsthal</code> function is a simple, <a href="https://www.geeksforgeeks.org/javascript-memoization/">recursive</a> function that returns the <a href="https://en.wikipedia.org/wiki/Jacobsthal_number">Jacobsthal Number</a> at a given index. The specifics of the code and Jacobsthal Number don't matter for this article. All we care about is that it's a computationally expensive function, defined <strong>within</strong> our component, hence the implementation of <code>useCallback</code>.
 </blockquote>
 </br>
 
