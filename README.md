@@ -345,6 +345,16 @@ There is no lag in our other input.
 If you'd like to dive deeper with useMemo, you can learn more in the
 [official React docs](https://beta.reactjs.org/apis/react/useMemo).
 
+> I’m always looking for new friends and colleagues. If you found this article
+> helpful and would like to connect, you can find me at any of my homes on the
+> web.
+>
+> [GitHub](https://github.com/austin-rt) |
+> [Twitter](https://twitter.com/0xStink) |
+> [LinkedIn](https://www.linkedin.com/in/austinrt) |
+> [Website](https://austinrt.io) | [Medium](https://austinrt.medium.com/) |
+> [Dev.to](https://dev.to/austinrt)
+
 ## Resources
 
 - [useMemo](https://beta.reactjs.org/apis/react/useMemo)
