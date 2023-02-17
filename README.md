@@ -1,4 +1,4 @@
-# `useMemo` – Demystifying React Hooks (Pt. 1)
+# `useMemo` – Demystifying React Hooks (Pt. 2)
 
 ![header](./assets/png/useMemo-header-small.png)
 
