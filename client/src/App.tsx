@@ -1,21 +1,16 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
+import { jacobsthal } from './helpers';
 
 function App() {
   const [number, setNumber] = useState<number>(0);
   const [input, setInput] = useState<string>('');
 
-  const jacobsthal = useCallback((n: number): number => {
-    if (!n) return 0;
-    if (n < 2) return n;
-    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
-  }, []);
-
-  const calculation = (n: number) => {
-    if (!n) {
+  const calculation: number = useMemo((): number => {
+    if (!number) {
       return jacobsthal(0);
     }
-    return jacobsthal(n);
-  };
+    return jacobsthal(number);
+  }, [number]);
 
   return (
     <div>
@@ -32,7 +27,7 @@ function App() {
               }}
             />
           </div>
-          <div className='result'>{calculation(number) || 0}</div>
+          <div className='result'>{calculation || 0}</div>
         </section>
         <section>
           <div className='user-input'>
